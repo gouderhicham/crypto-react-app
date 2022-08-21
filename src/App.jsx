@@ -1,7 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import { HomePage, Nav, News, Exchange, Cryptos } from "./components";
 import { Routes, Route } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { fetch_crypto_action } from "./actions/getCryptos";
 function App() {
+  
+  // dispatch function to fetch data to redux
+  const dispatch = useDispatch();
+  // useEffect :)
+  useEffect(() => {
+    dispatch(fetch_crypto_action());
+  }, []);
   return (
     <>
       {/* empty <></> just to avoid .app style for nav (push it to the right) */}

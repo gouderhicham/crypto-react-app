@@ -1,6 +1,10 @@
 import React from "react";
+import { Search , AllCryptos } from "../components";
 function Cryptos() {
-  return <h1>cryptos</h1>;
+  return <>
+  <Search /> 
+  <AllCryptos /> 
+  </>
 }
 
 export default Cryptos;
