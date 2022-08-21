@@ -1,36 +1,64 @@
-import React from "react";
-import {useSelector} from "react-redux"
+import React, { useEffect } from "react";
+import { fetch_crypto_action } from "../actions/getCryptos";
+import { useSelector, useDispatch } from "react-redux";
+import { PopularCryptos } from "../components";
 function Homepage() {
-  const data = useSelector(newData => newData.cryptos)
+  // dispatch function to fetch data to redux
+  const dispatch = useDispatch();
+  // useEffect :)
+  useEffect(() => {
+    dispatch(fetch_crypto_action());
+  }, []);
+  const data = useSelector((newData) => newData.cryptos);
+  // the fucntion that gonna show number with commas
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
   return (
     <div className="home-page-content">
       <h1 className="title">Global Crypto Stats</h1>
       <section className="stats">
         <div className="left">
           <div className="small-title">
-            <h3>Total Cryptocurrencies</h3>
-            <h3>{data.totalCoins || 15000}</h3>
+            <h4>Total Cryptocurrencies: </h4>
+            <h3>{numberWithCommas(data.totalCoins || "") || 0}</h3>
           </div>
           <div className="small-title">
-            <h3>Total Market Cap:</h3>
-            <h3>17.124</h3>
+            <h4>Total Market Cap: </h4>
+            <h3>
+              {`$${numberWithCommas(data.totalMarketCap || "").substring(
+                0,
+                4
+              )}T` || 0}
+            </h3>
           </div>
           <div className="small-title">
-            <h3>Total Exchanges</h3>
-            <h3>17.124</h3>
+            <h4>Total Exchanges: </h4>
+            <h3>{data.totalExchanges || "XX,XX"}</h3>
           </div>
         </div>
         <div className="right">
           <div className="small-title">
-            <h3>Total 24h Volume</h3>
-            <h3>17.124</h3>
+            <h4>Total 24h Volume: </h4>
+            <h3>
+              {`$${numberWithCommas(data.total24hVolume || "").substring(
+                0,
+                5
+              )}B` || 0}
+            </h3>
           </div>
           <div className="small-title">
-            <h3>Total Markets</h3>
-            <h3>17.124</h3>
+            <h4>Total Markets:</h4>
+            <h3>
+              {`${numberWithCommas(data.totalMarkets || "").substring(
+                0,
+                4
+              )}k` || 0}
+            </h3>
           </div>
         </div>
       </section>
+      <PopularCryptos />
     </div>
   );
 }

@@ -1,11 +1,12 @@
 @import "./home";
 @import "./nav";
+@import url("https://fonts.googleapis.com/css2?family=Archivo&display=swap");
 * {
   padding: 0;
   margin: 0;
   box-sizing: 0;
-  font-family: sans-serif;
-  color: #383c4d;
+  font-family: "Archivo", sans-serif;
+  color: #313131;
 }
 // push the page element to the right on the desktop view
 .app {
