@@ -3,10 +3,10 @@ import { getSearchText } from "../actions/getSearchText";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 function Search() {
-  const [texto, setTexto] = useSearchParams({ mytext: "" });
+  const [texto, setTexto] = useSearchParams({ search: "" });
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getSearchText(texto.get("mytext")));
+    dispatch(getSearchText(texto.get("search")));
   }, [texto]);
   return (
     <div
@@ -22,8 +22,8 @@ function Search() {
         }}
         type="text"
         placeholder="Search cryptos..."
-        value={texto.get("mytext")}
-        onChange={(e) => setTexto({ mytext: e.target.value })}
+        value={texto.get("search")}
+        onChange={(e) => setTexto({ search: e.target.value })}
       />
     </div>
   );
