@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { HomePage, Nav, News, Exchange, Cryptos } from "./components";
 import { Routes, Route } from "react-router-dom";
 function App() {
-  
   return (
     <>
-    {/* empty <></> just to avoid .app style for nav (push it to the right) */}
+      {/* empty <></> just to avoid .app style for nav (push it to the right) */}
       <Nav />
       <div className="app">
         <Routes>

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { fetch_crypto_action } from "../actions/getCryptos";
 import { useSelector, useDispatch } from "react-redux";
-import { PopularCryptos } from "../components";
+import { PopularCryptos,numberWithCommas } from "../components";
 function Homepage() {
   // dispatch function to fetch data to redux
   const dispatch = useDispatch();
@@ -11,9 +11,6 @@ function Homepage() {
   }, []);
   const data = useSelector((newData) => newData.cryptos);
   // the fucntion that gonna show number with commas
-  function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
   return (
     <div className="home-page-content">
       <h1 className="title">Global Crypto Stats</h1>

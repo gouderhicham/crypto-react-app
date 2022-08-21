@@ -6,3 +6,6 @@ export { default as Cryptos } from "./routes/Cryptos";
 export { default as Nav } from "./components/Nav";
 export { default as PopularCryptos } from "./components/PopularCryptos";
 export { default as CryptoIcon } from "./components/CryptoIcon";
+export function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}

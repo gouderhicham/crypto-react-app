@@ -11,10 +11,13 @@
 // push the page element to the right on the desktop view
 .app {
   margin-left: 250px;
-  padding: 1px 16px;
+  padding: 1px 1rem; 
 }
 @media screen and (max-width: 700px) {
   .app {
     margin-left: 0;
   }
+}
+body {
+  overflow-x: hidden;
 }

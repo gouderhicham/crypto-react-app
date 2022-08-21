@@ -4,18 +4,22 @@ import { CryptoIcon } from "../components";
 function PopularCryptos() {
   const cryptos = useSelector((data) => data.cryptos.popularCryptos);
   return (
-    <section>
-      {cryptos?.map((crypto) => (
-        <CryptoIcon
-          name={crypto.name}
-          market_cap = {crypto.marketCap}
-          imgSource={crypto.iconUrl}
-          price = {crypto.price}
-          key={crypto.uuid}
-          daily_change = {crypto.change}
-        />
-      ))}
-    </section>
+    <>
+    <h1 className="c-title" >World Most Popular Cryptos</h1>
+      <section className="cards">
+        {cryptos?.map((crypto) => (
+          <CryptoIcon
+            name={crypto.name}
+            market_cap={crypto.marketCap}
+            imgSource={crypto.iconUrl}
+            price={crypto.price}
+            key={crypto.uuid}
+            daily_change={crypto.change}
+            path={crypto.uuid}
+          />
+        ))}
+      </section>
+    </>
   );
 }
 
