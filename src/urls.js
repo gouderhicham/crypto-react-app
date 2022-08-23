@@ -6,3 +6,5 @@ export const coins_api_key =
   "5cfa285475msh7ea3a84888c7ce5p1e1e97jsnf62bfbcd3100";
 export const crypto_news_url =
   "https://crypto-news14.p.rapidapi.com/news/cointelegraph";
+export const crypto_details_url = (id) =>
+  `https://coinranking1.p.rapidapi.com/coin/${id}?timePeriod=24h`;

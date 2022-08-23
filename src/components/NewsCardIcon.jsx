@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-function NewsCardIcon({ title, image, data, setData, desc, date }) {
+function NewsCardIcon({ title, image, url, data, setData, desc, date }) {
   return (
     <Link
       onClick={() => {
@@ -10,6 +10,7 @@ function NewsCardIcon({ title, image, data, setData, desc, date }) {
           desc: desc,
           date: date,
           image: image,
+          url : url
         });
       }}
       to={String(title || "").substring(0, 10)}
