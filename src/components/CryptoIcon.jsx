@@ -17,7 +17,12 @@ function CryptoIcon({
       </div>
       <p className="push-me">Price:{String(price || 0).substring(0, 6)}$</p>
       <p>Market cap :{market_cap}$</p>
-      <p>Daily Change:{daily_change}%</p>
+      <p>
+        Daily Change:
+        <span style={{ color: `${daily_change < 0 ? "red" : "green"}` }}> 
+          {` ${daily_change}`}%
+        </span>
+      </p>
     </div>
   );
 }

@@ -74,9 +74,7 @@ function Footer() {
         <p>&copy; 2019 Something. All rights reserved.</p>
 
         <div className="legal__links">
-          <span>
-            I stole this footer <span className="heart">♥</span> from someone.
-          </span>
+          <span>I stole this footer from someone.</span>
         </div>
       </div>
     </footer>

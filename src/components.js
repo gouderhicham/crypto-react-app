@@ -4,6 +4,8 @@ export { default as News } from "./routes/News";
 export { default as Exchange } from "./routes/Exchange";
 export { default as Cryptos } from "./routes/Cryptos";
 export { default as Nav } from "./components/Nav";
+export { default as NewsCardIcon } from "./components/NewsCardIcon";
+export { default as NewsDetails} from "./components/NewsDetails";
 export { default as Footer } from "./components/Footer";
 export { default as Search } from "./components/Search";
 export { default as AllCryptos } from "./components/AllCryptos";
