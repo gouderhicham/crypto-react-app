@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import Converter from "timestamp-conv";
+import Loader from "../components/main_components/Loader";
 import {
   AreaChart,
   Area,
@@ -11,6 +12,7 @@ import {
 } from "recharts";
 
 function CryptoDetails() {
+  const loadingStatus = useSelector((stats) => stats.cryptoDetails.loading);
   const months = [
     "Jan",
     "Feb",
@@ -41,9 +43,12 @@ function CryptoDetails() {
     time: converDate(Number(ele.timestamp)),
   }));
   const coin = useSelector((a_data) => a_data.cryptoDetails.cryptDetails);
+  if (loadingStatus) {
+    return <Loader />;
+  }
   return (
     <div className="details-container">
-      <div className="details-title">
+      <div className="details-title-coin">
         <strong>{`${coin.name} (${coin.symbol}) Price`}</strong>
         <h3>{`${coin.name} live price in US Dollar (USD). View value statistics, market cap and supply.`}</h3>
       </div>
@@ -167,7 +172,7 @@ function CryptoDetails() {
         <div className="flex">
           <h1>{coin.name} Links</h1>
           {coin.links?.map((link) => (
-            <div className="info-line">
+            <div key={link.url} className="info-line">
               <p>{link.name}</p>
               <a href={`${link.url}`}>{link.url}</a>
             </div>
