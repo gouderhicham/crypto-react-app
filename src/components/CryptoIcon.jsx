@@ -1,7 +1,7 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { cryptDetailsAction } from "../actions/cryptoDetailsAction";
-import {useDispatch} from "react-redux"
+import { useDispatch } from "react-redux";
 function CryptoIcon({
   name,
   path,
@@ -11,11 +11,16 @@ function CryptoIcon({
   daily_change,
 }) {
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const pathName = useLocation().pathname;
   return (
     <div
       onClick={() => {
-        navigate(path);
+        if (pathName === "/" || pathName === "") {
+          navigate(`cryptos/${path}`);
+        } else {
+          navigate(path);
+        }
         dispatch(cryptDetailsAction(path));
       }}
       className="card"
@@ -28,7 +33,12 @@ function CryptoIcon({
       <p>Market cap :{market_cap}$</p>
       <p>
         Daily Change:
-        <span style={{ color: `${daily_change < 0 ? "red" : "green"}` , fontWeight : "bold"}}>
+        <span
+          style={{
+            color: `${daily_change < 0 ? "red" : "green"}`,
+            fontWeight: "bold",
+          }}
+        >
           {` ${daily_change}`}%
         </span>
       </p>

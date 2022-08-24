@@ -9,4 +9,4 @@ export const crypto_news_url =
 export const crypto_details_url = (id) =>
   `https://coinranking1.p.rapidapi.com/coin/${id}?timePeriod=24h`;
 export const crypto_price_url = (id) =>
-  `https://coinranking1.p.rapidapi.com/coin/${id}/history?timePeriod=7d`;
+  `https://coinranking1.p.rapidapi.com/coin/${id}/history?timePeriod=1y`;

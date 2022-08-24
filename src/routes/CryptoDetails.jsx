@@ -19,7 +19,6 @@ function CryptoDetails() {
     price: Number(ele.price),
     time: Number(ele.timestamp),
   }));
-  console.log(newArr);
   return (
     <AreaChart
       width={500}
