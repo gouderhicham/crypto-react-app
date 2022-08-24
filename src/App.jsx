@@ -6,6 +6,7 @@ import {
   Exchange,
   Cryptos,
   Footer,
+  CryptoDetails,
   NewsDetails,
 } from "./components";
 import { Routes, Route } from "react-router-dom";

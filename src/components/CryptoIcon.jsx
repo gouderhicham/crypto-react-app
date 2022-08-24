@@ -28,7 +28,7 @@ function CryptoIcon({
       <p>Market cap :{market_cap}$</p>
       <p>
         Daily Change:
-        <span style={{ color: `${daily_change < 0 ? "red" : "green"}` }}>
+        <span style={{ color: `${daily_change < 0 ? "red" : "green"}` , fontWeight : "bold"}}>
           {` ${daily_change}`}%
         </span>
       </p>

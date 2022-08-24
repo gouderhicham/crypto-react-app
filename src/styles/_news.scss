@@ -55,10 +55,13 @@
   background-color: rgba(0, 0, 0, 0.377);
 }
 .news-card-zoom {
+  margin: 15rem;
+  width: 100%;
   background-color: white;
-  width: 50%;
   img {
     width: 100%;
+    height: 450px;
+    object-fit: cover;
   }
   .details-title,
   .desc {
