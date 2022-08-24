@@ -1,0 +1,18 @@
+.details-container {
+    padding: 5rem;
+}
+.details-title {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  flex-direction: column;
+  border-bottom: 1.2px solid rgb(179, 179, 179); 
+  padding-bottom: 0.5rem;
+  strong{
+    font-weight: bold;
+    font-size: 2.6rem;
+  }
+  *{
+    padding: 1rem;
+  }
+}
