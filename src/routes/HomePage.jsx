@@ -1,9 +1,12 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { PopularCryptos, numberWithCommas } from "../components";
 function Homepage() {
+  const dispatch = useDispatch()
   const data = useSelector((newData) => newData.cryptos);
-
+  useEffect(()=> {
+    dispatch({type : "set-loading"})
+  },[])
   return (
     <div className="home-page-content">
       <h1 className="title">Global Crypto Stats</h1>

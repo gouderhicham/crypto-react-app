@@ -13,6 +13,12 @@ export { default as Loader } from "./components/main_components/Loader";
 export { default as AllCryptos } from "./components/AllCryptos";
 export { default as PopularCryptos } from "./components/PopularCryptos";
 export { default as CryptoIcon } from "./components/CryptoIcon";
+export { default as price } from "./images/price.png";
+export { default as high } from "./images/high.png";
+export { default as markets } from "./images/markets.png";
+export { default as rank } from "./images/rank.png";
+export { default as thunder } from "./images/thunder.png";
+export { default as ex } from "./images/ex.png";
 export function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
