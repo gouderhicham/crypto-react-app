@@ -27,7 +27,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem 0;
+  padding: 2rem 0 1.5rem 0;
   .label-right {
     display: flex;
     flex-direction: row;
@@ -93,12 +93,31 @@
     color: #6b6b6b;
     font-size: 1.1rem;
   }
-  a{
+  a {
     color: black;
   }
-  h3{
+  h3,
+  strong {
     font-size: 1.45rem;
     padding: 1.4rem 0 0.4rem 0;
     color: rgb(2, 0, 146);
+  }
+}
+.dates {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  padding-bottom: 1.5rem;
+  p {
+    padding: 0.3rem 1rem;
+    margin: 0 0.5rem;
+    background: rgb(163, 163, 163);
+    border-radius: 30px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: black;
   }
 }

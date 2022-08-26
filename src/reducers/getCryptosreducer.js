@@ -6,6 +6,7 @@ let initialState = {
   totalMarkets: null,
   popularCryptos: null,
   All_CRYPTOS : null, 
+  cryptos_loading : true
 };
 export const getCryptos = (state = initialState, action) => {
   switch (action.type) {
@@ -18,7 +19,8 @@ export const getCryptos = (state = initialState, action) => {
         totalMarketCap: action.payload.totalMarketCap,
         totalMarkets: action.payload.totalMarkets,
         popularCryptos: action.payload.popularCryptos,
-        All_CRYPTOS : action.payload.All_CRYPTOS
+        All_CRYPTOS : action.payload.All_CRYPTOS,
+        cryptos_loading : false
       };
     default:
       return { ...state };

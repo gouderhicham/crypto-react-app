@@ -8,19 +8,24 @@ import {
   Footer,
   CryptoDetails,
   NewsDetails,
+  Loader
 } from "./components";
 import { Routes, Route } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetch_crypto_action } from "./actions/getCryptos";
 import { newsAction } from "./actions/newsAction";
 function App() {
   // dispatch function to fetch data to redux
   const dispatch = useDispatch();
+  const loading = useSelector((data) => data.cryptos.cryptos_loading);
   // useEffect :)
   useEffect(() => {
     dispatch(fetch_crypto_action());
     dispatch(newsAction());
   }, []);
+  if (loading) {
+    return <Loader /> 
+  }
   return (
     <>
       {/* empty <></> just to avoid .app style for nav (push it to the right) */}

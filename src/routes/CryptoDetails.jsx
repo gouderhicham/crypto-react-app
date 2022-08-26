@@ -1,8 +1,9 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Converter from "timestamp-conv";
 import Loader from "../components/main_components/Loader";
 import { price, ex, high, markets, rank, thunder } from "../components";
+import { cryptDetailsAction } from "../actions/cryptoDetailsAction";
 import {
   AreaChart,
   Area,
@@ -13,7 +14,14 @@ import {
   ResponsiveContainer,
 } from "recharts";
 function CryptoDetails() {
+  const dispatch = useDispatch();
   const loadingStatus = useSelector((stats) => stats.cryptoDetails.loading);
+  const change = Number(
+    useSelector(
+      (single_history_data) =>
+        single_history_data.cryptoDetails.priceDetails.change
+    )
+  );
   const months = [
     "Jan",
     "Feb",
@@ -28,10 +36,17 @@ function CryptoDetails() {
     "Nov",
     "Dec",
   ];
-  const converDate = (time) => {
+  const converDate = (time, option) => {
+    // if time === yearly / monthly / weekly / 24h
     const Date = new Converter.date(time);
     // moths data is a index of them so we create an array of month and we select months[index]
-    return `${months[Date.getMonth() - 1]} ${Date.getYear()}`;
+    if (option === "full-date") {
+      return `${Date.getDay()} ${
+        months[Date.getMonth() - 1]
+      } ${Date.getYear()}`;
+    } else {
+      return `${months[Date.getMonth() - 1]} ${Date.getYear()}`;
+    }
   };
   // select coin price history from redux store
   const historData = useSelector(
@@ -42,9 +57,27 @@ function CryptoDetails() {
   const newArr = historData?.map((ele) => ({
     price: Number(ele.price),
     time: converDate(Number(ele.timestamp)),
+    fulltime: converDate(Number(ele.timestamp), "full-date"),
   }));
-  console.log(newArr);
+  // select the clicked crypto coin
   const coin = useSelector((a_data) => a_data.cryptoDetails.cryptDetails);
+  // the fucntion that's  gonna render different tooltip on chart hover
+  const renderTooltip = (props) => {
+    if (props && props.payload !== null && props.payload[0]) {
+      return (
+        <div>
+          <div>
+            {/* display two digits after decimal if number is bigger than 0.01 */}
+            Price:$
+            {Number(props.payload[0].payload.price) > 0.01
+              ? Number(props.payload[0].payload.price).toFixed(2)
+              : Number(props.payload[0].payload.price)}
+          </div>
+          <div>Date: {props.payload[0].payload.fulltime}</div>
+        </div>
+      );
+    }
+  };
   if (loadingStatus) {
     return <Loader />;
   }
@@ -66,10 +99,10 @@ function CryptoDetails() {
             Change:
             <span
               style={{
-                color: `${coin.change < 0 ? "red" : "green"}`,
+                color: `${change < 0 ? "red" : "green"}`,
               }}
             >
-              {` ${coin.change}`}%
+              {` ${change}`}%
             </span>
           </p>
           <p>
@@ -77,6 +110,25 @@ function CryptoDetails() {
           </p>
         </div>
       </div>
+      <div
+        onClick={(e) => {
+          if (e.target.classList[0] !== "dates") {
+            let date = e.target.textContent;
+            dispatch(cryptDetailsAction(coin.uuid, date));
+          }
+        }}
+        className="dates"
+      >
+        <p>3h</p>
+        <p>24h</p>
+        <p>7d</p>
+        <p>30d</p>
+        <p>3m</p>
+        <p>1y</p>
+        <p>3y</p>
+        <p>5y</p>
+      </div>
+
       <ResponsiveContainer
         className="chart-container"
         width="100%"
@@ -86,7 +138,7 @@ function CryptoDetails() {
           <CartesianGrid strokeDasharray="0 0 5" />
           <XAxis angle={-10} reversed dataKey="time" />
           <YAxis interval={0} />
-          <Tooltip />
+          <Tooltip content={renderTooltip} />
           <Area dataKey="price" stroke="#444444" fill={coin.color} />
         </AreaChart>
       </ResponsiveContainer>
@@ -187,7 +239,14 @@ function CryptoDetails() {
           {coin.links?.map((link) => (
             <div key={link.url} className="info-line">
               <p>{link.name}</p>
-              <a target={"_blank"} href={`${link.url}`}>{link.url.replace('http://','').replace('https://','').split(/[/?#]/)[0]}</a>
+              <a target={"_blank"} href={`${link.url}`}>
+                {
+                  link.url
+                    .replace("http://", "")
+                    .replace("https://", "")
+                    .split(/[/?#]/)[0]
+                }
+              </a>
             </div>
           ))}
         </div>

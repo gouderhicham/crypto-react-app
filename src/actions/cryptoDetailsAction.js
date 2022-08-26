@@ -1,5 +1,5 @@
 import { coins_api_key, crypto_details_url, crypto_price_url } from "../urls";
-export const cryptDetailsAction = (id) => {
+export const cryptDetailsAction = (id, requested_date) => {
   const options = {
     method: "GET",
     headers: {
@@ -9,7 +9,10 @@ export const cryptDetailsAction = (id) => {
   };
   return async (dispatch) => {
     let response = await fetch(crypto_details_url(id), options);
-    let price_response = await fetch(crypto_price_url(id), options);
+    let price_response = await fetch(
+      crypto_price_url(id, requested_date),
+      options
+    );
     let data = await response.json();
     let priceData = await price_response.json();
     dispatch({
