@@ -10,6 +10,7 @@ export { default as Footer } from "./components/main_components/Footer";
 export { default as Search } from "./components/Search";
 export { default as CryptoDetails } from "./routes/CryptoDetails";
 export { default as Loader } from "./components/main_components/Loader";
+export { default as DetailsSection } from "./components/main_components/DetailsSection";
 export { default as AllCryptos } from "./components/AllCryptos";
 export { default as PopularCryptos } from "./components/PopularCryptos";
 export { default as CryptoIcon } from "./components/CryptoIcon";

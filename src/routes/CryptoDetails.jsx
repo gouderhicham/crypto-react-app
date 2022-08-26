@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Converter from "timestamp-conv";
 import Loader from "../components/main_components/Loader";
-import { price, ex, high, markets, rank, thunder } from "../components";
 import { cryptDetailsAction } from "../actions/cryptoDetailsAction";
+import { DetailsSection } from "../components";
 import {
   AreaChart,
   Area,
@@ -13,7 +13,10 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import { useParams } from "react-router-dom";
 function CryptoDetails() {
+  const [date_state, setdate_state] = useState("1y");
+  const params = useParams();
   const dispatch = useDispatch();
   const loadingStatus = useSelector((stats) => stats.cryptoDetails.loading);
   const change = Number(
@@ -48,6 +51,20 @@ function CryptoDetails() {
       return `${months[Date.getMonth() - 1]} ${Date.getYear()}`;
     }
   };
+  // select dates p
+  const ps = document.querySelectorAll(".dates p");
+  useEffect(() => {
+    ps?.forEach((p) => {
+      if (p.textContent === date_state) {
+        p.classList.add("selected");
+        console.log("ah");
+      } else {
+        p.classList.remove("selected");
+        console.log("ahh");
+      }
+    });
+  }, [date_state]);
+
   // select coin price history from redux store
   const historData = useSelector(
     (single_history_data) =>
@@ -66,18 +83,23 @@ function CryptoDetails() {
     if (props && props.payload !== null && props.payload[0]) {
       return (
         <div>
-          <div>
+          <div style={{ color: "black" }}>
             {/* display two digits after decimal if number is bigger than 0.01 */}
             Price:$
-            {Number(props.payload[0].payload.price) > 0.01
+            {Number(props.payload[0].payload.price) > 2.01
               ? Number(props.payload[0].payload.price).toFixed(2)
               : Number(props.payload[0].payload.price)}
           </div>
-          <div>Date: {props.payload[0].payload.fulltime}</div>
+          <div style={{ color: "black" }}>
+            Date: {props.payload[0].payload.fulltime}
+          </div>
         </div>
       );
     }
   };
+  useEffect(() => {
+    dispatch(cryptDetailsAction(params.coinId));
+  }, []);
   if (loadingStatus) {
     return <Loader />;
   }
@@ -114,6 +136,7 @@ function CryptoDetails() {
         onClick={(e) => {
           if (e.target.classList[0] !== "dates") {
             let date = e.target.textContent;
+            setdate_state(date);
             dispatch(cryptDetailsAction(coin.uuid, date));
           }
         }}
@@ -124,11 +147,10 @@ function CryptoDetails() {
         <p>7d</p>
         <p>30d</p>
         <p>3m</p>
-        <p>1y</p>
+        <p className="selected">1y</p>
         <p>3y</p>
         <p>5y</p>
       </div>
-
       <ResponsiveContainer
         className="chart-container"
         width="100%"
@@ -137,122 +159,13 @@ function CryptoDetails() {
         <AreaChart className="chart" data={newArr}>
           <CartesianGrid strokeDasharray="0 0 5" />
           <XAxis angle={-10} reversed dataKey="time" />
-          <YAxis interval={0} />
+          <YAxis domain={["min", "auto"]} type="number" interval={0} />
           <Tooltip content={renderTooltip} />
           <Area dataKey="price" stroke="#444444" fill={coin.color} />
         </AreaChart>
       </ResponsiveContainer>
-      <div className="details-column">
-        <div className="details-left-stats flex">
-          <h1 className="details-title">{coin.name} Value Statistics</h1>
-          <p className="details-desc">
-            An overview showing the statistics of {coin.name}, such as the base
-            and quote currency, the rank, and trading volume.
-          </p>
-          <div className="info">
-            <div className="info-line">
-              <div className="img-label">
-                <img src={price} alt="" />
-                <p>Price to USD</p>
-              </div>
-              <div className="right-info">{`$ ${Number(coin.price).toFixed(
-                2
-              )}`}</div>
-            </div>
-            <div className="info-line">
-              <div className="img-label">
-                <img src={rank} alt="" />
-                <p>Rank</p>
-              </div>
-              <div className="right-info">{`#${coin.rank}`}</div>
-            </div>
-            <div className="info-line">
-              <div className="img-label">
-                <img src={thunder} alt="" />
-                <p>24h Volume</p>
-              </div>
-              <div className="right-info">{`$ ${Number(
-                coin["24hVolume"]
-              ).toFixed(2)}`}</div>
-            </div>
-            <div className="info-line">
-              <div className="img-label">
-                <img src={price} alt="" />
-                <p>Market Cap</p>
-              </div>
-              <div className="right-info">{`$ ${Number(coin.marketCap).toFixed(
-                2
-              )}`}</div>
-            </div>
-            <div className="info-line">
-              <div className="img-label">
-                <img src={high} alt="" />
-                <p> Highest price reached</p>
-              </div>
-              <div className="right-info">{`$ ${Number(
-                coin.allTimeHigh?.price
-              ).toFixed(2)}`}</div>
-            </div>
-          </div>
-        </div>
-        <div className="details-right-stats flex">
-          <h1 className="details-title">Other Stats Info</h1>
-          <p className="details-desc">
-            An overview showing the statistics of {coin.name}, such as the base
-            and quote currency, the rank, and trading volume.
-          </p>
-          <div className="info">
-            <div className="info-line">
-              <div className="img-label">
-                <img src={markets} alt="" />
-                <p>Number Of Markets</p>
-              </div>
-              <div className="right-info">{`$ ${coin.numberOfMarkets}`}</div>
-            </div>
-            <div className="info-line">
-              <div className="img-label">
-                <img src={ex} alt="" />
-                <p>Number Of Exchanges</p>
-              </div>
-              <div className="right-info">{`${coin.numberOfExchanges}`}</div>
-            </div>
-            <div className="info-line">
-              <div className="img-label">
-                <img src={price} alt="" />
-                <p>Total supply</p>
-              </div>
-              <div className="right-info">{`$ ${Number(
-                coin.supply?.total
-              ).toFixed(2)}`}</div>
-            </div>
-          </div>
-        </div>
-        <div className="details-three">
-          <h1 className="details-title">What is {coin.name} ? </h1>
-          <div
-            className="coin-info-p"
-            dangerouslySetInnerHTML={{ __html: coin?.description }}
-          ></div>
-        </div>
-        <div className="flex">
-          <h1 className="details-title">{coin.name} Links</h1>
-          {coin.links?.map((link) => (
-            <div key={link.url} className="info-line">
-              <p>{link.name}</p>
-              <a target={"_blank"} href={`${link.url}`}>
-                {
-                  link.url
-                    .replace("http://", "")
-                    .replace("https://", "")
-                    .split(/[/?#]/)[0]
-                }
-              </a>
-            </div>
-          ))}
-        </div>
-      </div>
+      <DetailsSection coin={coin} />
     </div>
   );
 }
-
 export default CryptoDetails;

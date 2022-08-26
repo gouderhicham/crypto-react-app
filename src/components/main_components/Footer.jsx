@@ -3,7 +3,7 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="footer__addr">
-        <h1 className="footer__logo">Something</h1>
+        <h1 className="footer__logo">The company</h1>
 
         <h2>Contact</h2>
 
@@ -71,7 +71,7 @@ function Footer() {
       </ul>
 
       <div className="legal">
-        <p>&copy; 2019 Something. All rights reserved.</p>
+        <p>&copy; 2019 The company. All rights reserved.</p>
 
         <div className="legal__links">
           <span>I stole this footer from someone.</span>
