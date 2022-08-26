@@ -40,9 +40,10 @@ function CryptoDetails() {
   );
   // the filtered pricehistory list that contain the price and time values formatted
   const newArr = historData?.map((ele) => ({
-    price: (Math.round(Number(ele.price) * 100) / 100).toFixed(2),
+    price: Number(ele.price),
     time: converDate(Number(ele.timestamp)),
   }));
+  console.log(newArr);
   const coin = useSelector((a_data) => a_data.cryptoDetails.cryptDetails);
   if (loadingStatus) {
     return <Loader />;
@@ -72,7 +73,7 @@ function CryptoDetails() {
             </span>
           </p>
           <p>
-            Current {coin.name} Price:{` $ ${coin.price}`}
+            Current {coin.name} Price:{` $ ${Number(coin.price).toFixed(2)}`}
           </p>
         </div>
       </div>
@@ -102,9 +103,9 @@ function CryptoDetails() {
                 <img src={price} alt="" />
                 <p>Price to USD</p>
               </div>
-              <div className="right-info">{`$ ${(
-                Math.round(Number(coin.price) * 100) / 100
-              ).toFixed(2)}`}</div>
+              <div className="right-info">{`$ ${Number(coin.price).toFixed(
+                2
+              )}`}</div>
             </div>
             <div className="info-line">
               <div className="img-label">
@@ -118,8 +119,8 @@ function CryptoDetails() {
                 <img src={thunder} alt="" />
                 <p>24h Volume</p>
               </div>
-              <div className="right-info">{`$ ${(
-                Math.round(Number(coin["24hVolume"]) * 100) / 100
+              <div className="right-info">{`$ ${Number(
+                coin["24hVolume"]
               ).toFixed(2)}`}</div>
             </div>
             <div className="info-line">
@@ -127,17 +128,17 @@ function CryptoDetails() {
                 <img src={price} alt="" />
                 <p>Market Cap</p>
               </div>
-              <div className="right-info">{`$ ${(
-                Math.round(Number(coin.marketCap) * 100) / 100
-              ).toFixed(2)}`}</div>
+              <div className="right-info">{`$ ${Number(coin.marketCap).toFixed(
+                2
+              )}`}</div>
             </div>
             <div className="info-line">
               <div className="img-label">
                 <img src={high} alt="" />
                 <p> Highest price reached</p>
               </div>
-              <div className="right-info">{`$ ${(
-                Math.round(Number(coin.allTimeHigh?.price) * 100) / 100
+              <div className="right-info">{`$ ${Number(
+                coin.allTimeHigh?.price
               ).toFixed(2)}`}</div>
             </div>
           </div>
@@ -168,20 +169,25 @@ function CryptoDetails() {
                 <img src={price} alt="" />
                 <p>Total supply</p>
               </div>
-              <div className="right-info">{`$ ${coin.supply?.total}`}</div>
+              <div className="right-info">{`$ ${Number(
+                coin.supply?.total
+              ).toFixed(2)}`}</div>
             </div>
           </div>
         </div>
         <div className="details-three">
           <h1 className="details-title">What is {coin.name} ? </h1>
-          <div className="coin-info-p" dangerouslySetInnerHTML={{ __html: coin?.description }}></div>
+          <div
+            className="coin-info-p"
+            dangerouslySetInnerHTML={{ __html: coin?.description }}
+          ></div>
         </div>
         <div className="flex">
           <h1 className="details-title">{coin.name} Links</h1>
           {coin.links?.map((link) => (
             <div key={link.url} className="info-line">
               <p>{link.name}</p>
-              <a href={`${link.url}`}>{link.url}</a>
+              <a target={"_blank"} href={`${link.url}`}>{link.url.replace('http://','').replace('https://','').split(/[/?#]/)[0]}</a>
             </div>
           ))}
         </div>
