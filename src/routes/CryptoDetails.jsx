@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Converter from "timestamp-conv";
 import Loader from "../components/main_components/Loader";
 import { cryptDetailsAction } from "../actions/cryptoDetailsAction";
 import { DetailsSection } from "../exports";
+import { converDate } from "../exports";
 import {
   AreaChart,
   Area,
@@ -25,37 +25,7 @@ function CryptoDetails() {
         single_history_data.cryptoDetails.priceDetails.change
     )
   );
-  const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-  const converDate = (time, option) => {
-    const Date = new Converter.date(time);
-    if (option === "5y") {
-      return `${Date.getYear()}`;
-    } else if (option === "30d" || option === "7d") {
-      return `${months[Date.getMonth() - 1]} ${Date.getDay()}`;
-    } else if (option === "3m" || option === "1y" || option === "3y") {
-      return `${months[Date.getMonth() - 1]} ${Date.getYear()}`;
-    } else if (option === "24h" || option === "3h") {
-      if (Number(Date.getHour()) < 12) {
-        return `${Date.getHour()}:${Date.getMinute()} AM`;
-      }
-      else{
-        return `${Date.getHour()}:${Date.getMinute()} PM`;
-      }
-    }
-  };
+ 
   // select dates p
   const ps = document.querySelectorAll(".dates p");
   useEffect(() => {

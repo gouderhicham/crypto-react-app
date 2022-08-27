@@ -1,3 +1,5 @@
+import Converter from "timestamp-conv";
+import millify from "millify";
 // doing this to import them in one line and not stack them in App component
 export { default as HomePage } from "./routes/HomePage";
 export { default as News } from "./routes/News";
@@ -20,20 +22,41 @@ export { default as markets } from "./images/markets.png";
 export { default as rank } from "./images/rank.png";
 export { default as thunder } from "./images/thunder.png";
 export { default as ex } from "./images/ex.png";
-import millify from "millify";
 export function formateNumber(number) {
   return millify(number, {
     precision: 2,
     decimalSeparator: ",",
   });
 }
-const converDate = (time, option) => {
+export const converDate = (time, option) => {
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
   const Date = new Converter.date(time);
-  if (option === "5y" || option === "3y" || option === "1y") {
-    return `${months[Date.getMonth() - 1]} ${Date.getYear()}`;
+  if (option === "5y") {
+    return `${Date.getYear()}`;
   } else if (option === "30d" || option === "7d") {
-    return `${Date.getDay()}.${Date.getMonth()},${Date.getHour()}`;
+    return `${months[Date.getMonth() - 1]} ${Date.getDay()}`;
+  } else if (option === "3m" || option === "1y" || option === "3y") {
+    return `${months[Date.getMonth() - 1]} ${Date.getYear()}`;
   } else if (option === "24h" || option === "3h") {
-    return `${Date.getHour()}:${Date.getMinute()}`;
+    if (Number(Date.getHour()) < 12) {
+      return `${Date.getHour()}:${Date.getMinute()} AM`;
+    } else {
+      return `${Date.getHour()}:${Date.getMinute()} PM`;
+    }
   }
 };
+// check how many time actions is dispatched and how many times a component render ((page details one))
