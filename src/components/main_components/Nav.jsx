@@ -6,30 +6,43 @@ import chartIcon from "../../images/chart.svg";
 import exchangeIcon from "../../images/ex.svg";
 import newsIcon from "../../images/news.svg";
 function Nav() {
-    const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <div className="sidebar">
-      <div onClick={()=>{
-        navigate("/")        
-      }} className="logo">
+      <div
+        onClick={() => {
+          navigate("/");
+        }}
+        className="logo"
+      >
         <img className="logo-img" src={logo} alt="logo" />
       </div>
-      <Link className="push nav-links" to={"/"}>
-        <img width={25} src={homeIcon} alt="home-icon" />
-        <p>Home</p>
-      </Link>
-      <Link className="nav-links" to={"/cryptos"}>
-        <img width={25} src={chartIcon} alt="home-icon" />
-        <p>Crypto Currencies</p>
-      </Link>
-      <Link className="nav-links" to={"/exchange"}>
-        <img width={25} src={exchangeIcon} alt="home-icon" />
-        <p>Exchange</p>
-      </Link>
-      <Link className="nav-links" to={"/news"}>
-        <img width={25} src={newsIcon} alt="home-icon" />
-        <p>News</p>
-      </Link>
+      <div className="nav-link-res">
+        <Link to={"/"}>
+          <div className="push nav-links">
+            <img width={25} src={homeIcon} alt="home-icon" />
+            <p>Home</p>
+          </div>
+        </Link>
+        <Link to={"/cryptos"}>
+          <div className="nav-links">
+            <img width={25} src={chartIcon} alt="home-icon" />
+            <p>Crypto Currencies</p>
+          </div>
+        </Link>
+        <Link to={"/exchange"}>
+          <div className="nav-links">
+            <img width={25} src={exchangeIcon} alt="home-icon" />
+            <p>Exchange</p>
+          </div>
+        </Link>
+        <Link to={"/news"}>
+          <div className="nav-links">
+            <img width={25} src={newsIcon} alt="home-icon" />
+            <p>News</p>
+          </div>
+        </Link>
+      </div>
     </div>
   );
 }

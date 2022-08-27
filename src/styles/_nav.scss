@@ -12,7 +12,7 @@
   margin-top: 10rem;
 }
 
-.logo{
+.logo {
   cursor: pointer;
   width: 100%;
   display: flex;
@@ -53,18 +53,36 @@
     }
   }
 }
+.nav-link-res a {
+  text-decoration: none;
+}
 @media screen and (max-width: 700px) {
+  .push {
+    margin-top: 0rem;
+  }
   .sidebar {
     display: flex;
     width: 100%;
     height: auto;
     position: relative;
   }
-}
-@media screen and (max-width: 400px) {
-  .sidebar {
+  .nav-link-res {
+    transform: translateX(-100%);
+    transition: 0.3s ease all;
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    background-color: #f1f1f1;
     display: flex;
     flex-direction: column;
-    text-align: center;
+    align-items: center;
+    justify-content: center;
+    a {
+      width: 100%;
+      background-color: green;
+      display: flex;
+      align-items: center;
+      flex-direction: column
+    }
   }
 }
