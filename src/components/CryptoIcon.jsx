@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { cryptDetailsAction } from "../actions/cryptoDetailsAction";
 import { useDispatch } from "react-redux";
+import { formateNumber } from "../exports";
 function CryptoIcon({
   name,
   path,
@@ -29,8 +30,13 @@ function CryptoIcon({
         <h3 className="name">{name}</h3>
         <img width={30} src={imgSource} alt={name || "crypto name"} />
       </div>
-      <p className="push-me">Price:{String(price || 0).substring(0, 6)}$</p>
-      <p>Market cap :{market_cap}$</p>
+      <p className="push-me">
+        Price:
+        {`$ ${Number(price) > 0.001
+          ? formateNumber(Number(price))
+          : Number(price).toFixed(7)}`}
+      </p>
+      <p>Market cap :$ {formateNumber(Number(market_cap))}</p>
       <p>
         Daily Change:
         <span

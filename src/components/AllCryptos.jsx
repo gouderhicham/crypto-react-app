@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { CryptoIcon } from "../components";
+import { CryptoIcon } from "../exports";
 function AllCryptos() {
   const [cryps, setCryps] = useState([]);
   const cryptos = useSelector((data) => data.cryptos.All_CRYPTOS);

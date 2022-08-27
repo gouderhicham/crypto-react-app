@@ -1,6 +1,7 @@
 import React from "react";
-import { price, ex, high, markets, rank, thunder } from "../../components";
-function DetailsSection({coin}) {
+import { price, ex, high, markets, rank, thunder } from "../../exports";
+import { formateNumber } from "../../exports";
+function DetailsSection({ coin }) {
   return (
     <div className="details-column">
       <div className="details-left-stats flex">
@@ -31,8 +32,8 @@ function DetailsSection({coin}) {
               <img src={thunder} alt="" />
               <p>24h Volume</p>
             </div>
-            <div className="right-info">{`$ ${Number(coin["24hVolume"]).toFixed(
-              2
+            <div className="right-info">{`$ ${formateNumber(
+              Number(coin["24hVolume"])
             )}`}</div>
           </div>
           <div className="info-line">
@@ -40,8 +41,8 @@ function DetailsSection({coin}) {
               <img src={price} alt="" />
               <p>Market Cap</p>
             </div>
-            <div className="right-info">{`$ ${Number(coin.marketCap).toFixed(
-              2
+            <div className="right-info">{`$ ${formateNumber(
+              Number(coin.marketCap)
             )}`}</div>
           </div>
           <div className="info-line">
@@ -67,7 +68,7 @@ function DetailsSection({coin}) {
               <img src={markets} alt="" />
               <p>Number Of Markets</p>
             </div>
-            <div className="right-info">{`$ ${coin.numberOfMarkets}`}</div>
+            <div className="right-info">{`${coin.numberOfMarkets}`}</div>
           </div>
           <div className="info-line">
             <div className="img-label">
@@ -81,9 +82,9 @@ function DetailsSection({coin}) {
               <img src={price} alt="" />
               <p>Total supply</p>
             </div>
-            <div className="right-info">{`$ ${Number(
-              coin.supply?.total
-            ).toFixed(2)}`}</div>
+            <div className="right-info">{`$ ${formateNumber(
+              Number(coin.supply?.total)
+            )}`}</div>
           </div>
         </div>
       </div>

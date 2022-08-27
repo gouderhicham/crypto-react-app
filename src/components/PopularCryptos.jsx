@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { CryptoIcon } from "../components";
+import { CryptoIcon } from "../exports";
 function PopularCryptos() {
   const cryptos = useSelector((data) => data.cryptos.popularCryptos);
   return (

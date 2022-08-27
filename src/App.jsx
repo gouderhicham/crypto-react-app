@@ -9,7 +9,7 @@ import {
   CryptoDetails,
   NewsDetails,
   Loader
-} from "./components";
+} from "./exports";
 import { Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetch_crypto_action } from "./actions/getCryptos";

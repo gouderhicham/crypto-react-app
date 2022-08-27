@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Converter from "timestamp-conv";
 import Loader from "../components/main_components/Loader";
 import { cryptDetailsAction } from "../actions/cryptoDetailsAction";
-import { DetailsSection } from "../components";
+import { DetailsSection } from "../exports";
 import {
   AreaChart,
   Area,
@@ -40,15 +40,15 @@ function CryptoDetails() {
     "Dec",
   ];
   const converDate = (time, option) => {
-    // if time === yearly / monthly / weekly / 24h
     const Date = new Converter.date(time);
-    // moths data is a index of them so we create an array of month and we select months[index]
-    if (option === "full-date") {
-      return `${Date.getDay()} ${
-        months[Date.getMonth() - 1]
-      } ${Date.getYear()}`;
-    } else {
+    if (option === "5y" || option === "3y" || option === "1y") {
       return `${months[Date.getMonth() - 1]} ${Date.getYear()}`;
+    } else if (option === "30d" || option === "7d") {
+      return `${Date.getDay()}.${Date.getMonth()},${Date.getHour()}`;
+    } else if (option === "3m") {
+      return `d:${Date.getDay()}/M:${Date.getMonth()}`;
+    } else if (option === "24h" || option === "3h") {
+      return `${Date.getHour()}:${Date.getMinute()}`;
     }
   };
   // select dates p
@@ -57,10 +57,8 @@ function CryptoDetails() {
     ps?.forEach((p) => {
       if (p.textContent === date_state) {
         p.classList.add("selected");
-        console.log("ah");
       } else {
         p.classList.remove("selected");
-        console.log("ahh");
       }
     });
   }, [date_state]);
@@ -73,8 +71,8 @@ function CryptoDetails() {
   // the filtered pricehistory list that contain the price and time values formatted
   const newArr = historData?.map((ele) => ({
     price: Number(ele.price),
-    time: converDate(Number(ele.timestamp)),
-    fulltime: converDate(Number(ele.timestamp), "full-date"),
+    time: converDate(Number(ele.timestamp), date_state),
+    fulltime: converDate(Number(ele.timestamp), date_state),
   }));
   // select the clicked crypto coin
   const coin = useSelector((a_data) => a_data.cryptoDetails.cryptDetails);
@@ -128,7 +126,12 @@ function CryptoDetails() {
             </span>
           </p>
           <p>
-            Current {coin.name} Price:{` $ ${Number(coin.price).toFixed(2)}`}
+            Current Price:
+            {`$ ${
+              Number(coin.price) < 0.001
+                ? Number(coin.price).toFixed(6)
+                : Number(coin.price).toFixed(2)
+            }`}
           </p>
         </div>
       </div>
@@ -157,7 +160,7 @@ function CryptoDetails() {
         height={400}
       >
         <AreaChart className="chart" data={newArr}>
-          <CartesianGrid strokeDasharray="0 0 5" />
+          <CartesianGrid strokeDasharray="3 2 4" />
           <XAxis angle={-10} reversed dataKey="time" />
           <YAxis domain={["min", "auto"]} type="number" interval={0} />
           <Tooltip content={renderTooltip} />

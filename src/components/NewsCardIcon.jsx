@@ -14,7 +14,6 @@ function NewsCardIcon({ title, id, image, url, data, setData, desc, date }) {
           image: image,
           url: url,
         });
-        console.log(id);
       }}
       to={String(title || "").substring(0, 10)}
     >

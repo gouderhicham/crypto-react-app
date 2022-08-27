@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Search , AllCryptos } from "../components";
+import { Search , AllCryptos } from "../exports";
 import {useDispatch} from "react-redux"
 function Cryptos() {
   const dispatch = useDispatch()

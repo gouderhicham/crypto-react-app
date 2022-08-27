@@ -20,6 +20,23 @@ export { default as markets } from "./images/markets.png";
 export { default as rank } from "./images/rank.png";
 export { default as thunder } from "./images/thunder.png";
 export { default as ex } from "./images/ex.png";
-export function numberWithCommas(x) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+import millify from "millify";
+export function formateNumber(number) {
+  return millify(number, {
+    precision: 2,
+    decimalSeparator: ",",
+  });
 }
+const converDate = (time, option) => {
+  const Date = new Converter.date(time);
+  if (option === "5y" || option === "3y" || option === "1y") {
+    return `${months[Date.getMonth() - 1]} ${Date.getYear()}`;
+  } else if (option === "30d" || option === "7d") {
+    return `${Date.getDay()}.${Date.getMonth()},${Date.getHour()}`;
+  } else if (option === "24h" || option === "3h") {
+    return `${Date.getHour()}:${Date.getMinute()}`;
+  }
+};
+// if timestamp is in years show only months in label and days on hover
+// if timestamp is in months or 1y show months and days on lablel and days and hours on hover
+// if timestamp is in weeks or days show only hours and days and month and show only minutes and hours and days on hover
