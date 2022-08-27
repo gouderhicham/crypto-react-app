@@ -37,6 +37,3 @@ const converDate = (time, option) => {
     return `${Date.getHour()}:${Date.getMinute()}`;
   }
 };
-// if timestamp is in years show only months in label and days on hover
-// if timestamp is in months or 1y show months and days on lablel and days and hours on hover
-// if timestamp is in weeks or days show only hours and days and month and show only minutes and hours and days on hover

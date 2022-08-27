@@ -124,3 +124,6 @@
 .selected {
   background: rgb(99, 98, 98) !important;
 }
+.recharts-cartesian-axis-tick:first-child{
+  display: none;
+}

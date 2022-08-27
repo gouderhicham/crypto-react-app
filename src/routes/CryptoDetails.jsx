@@ -41,14 +41,19 @@ function CryptoDetails() {
   ];
   const converDate = (time, option) => {
     const Date = new Converter.date(time);
-    if (option === "5y" || option === "3y" || option === "1y") {
-      return `${months[Date.getMonth() - 1]} ${Date.getYear()}`;
+    if (option === "5y") {
+      return `${Date.getYear()}`;
     } else if (option === "30d" || option === "7d") {
-      return `${Date.getDay()}.${Date.getMonth()},${Date.getHour()}`;
-    } else if (option === "3m") {
-      return `d:${Date.getDay()}/M:${Date.getMonth()}`;
+      return `${months[Date.getMonth() - 1]} ${Date.getDay()}`;
+    } else if (option === "3m" || option === "1y" || option === "3y") {
+      return `${months[Date.getMonth() - 1]} ${Date.getYear()}`;
     } else if (option === "24h" || option === "3h") {
-      return `${Date.getHour()}:${Date.getMinute()}`;
+      if (Number(Date.getHour()) < 12) {
+        return `${Date.getHour()}:${Date.getMinute()} AM`;
+      }
+      else{
+        return `${Date.getHour()}:${Date.getMinute()} PM`;
+      }
     }
   };
   // select dates p
@@ -161,7 +166,12 @@ function CryptoDetails() {
       >
         <AreaChart className="chart" data={newArr}>
           <CartesianGrid strokeDasharray="3 2 4" />
-          <XAxis angle={-10} reversed dataKey="time" />
+          <XAxis
+            interval={newArr.length / 3}
+            scale={"auto"}
+            reversed
+            dataKey="time"
+          />
           <YAxis domain={["min", "auto"]} type="number" interval={0} />
           <Tooltip content={renderTooltip} />
           <Area dataKey="price" stroke="#444444" fill={coin.color} />
