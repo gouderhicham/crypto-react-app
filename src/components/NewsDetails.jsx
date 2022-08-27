@@ -1,5 +1,5 @@
 import React from "react";
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 function NewsDetails({ title, image, desc, url, date }) {
   const navigate = useNavigate();
@@ -15,8 +15,8 @@ function NewsDetails({ title, image, desc, url, date }) {
       >
         <motion.div
           layoutId={`container ${date}`}
-          transition = {{duration : 0.3}}
-          exit = {{transition : {duration : 0.2}}}
+          transition={{ duration: 0.3 }}
+          exit={{ transition: { duration: 0.2 } }}
           className="news-card-zoom"
         >
           <img src={image} alt="bit" />

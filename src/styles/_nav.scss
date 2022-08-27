@@ -21,7 +21,6 @@
   padding: 1rem 0;
   img {
     width: 200px;
-    z-index: 12;
   }
 }
 .nav-links {
@@ -112,7 +111,7 @@
 @media screen and (max-width: 450px) {
   .menu-pic {
     opacity: 1;
-    top: 40px;
+    top: 30px;
     right: 10px;
   }
 }

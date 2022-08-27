@@ -26,7 +26,7 @@ function Nav() {
         }}
         className="logo"
       >
-        <img className="logo-img" src={logo} alt="logo" />
+        <img style={{zIndex:`${active ? "12"  : "auto"}`}} className="logo-img" src={logo} alt="logo" />
       </div>
       <div
         className={`nav-link-res ${
