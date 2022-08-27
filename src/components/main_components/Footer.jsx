@@ -1,5 +1,8 @@
 import React from "react";
+import { useSelector } from "react-redux";
 function Footer() {
+  const loading = useSelector((data) => data.cryptos.cryptos_loading);
+  if (loading) return; 
   return (
     <footer className="footer">
       <div className="footer__addr">
