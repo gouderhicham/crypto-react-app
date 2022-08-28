@@ -2,7 +2,7 @@ import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/main_components/Loader";
 import { cryptDetailsAction } from "../actions/cryptoDetailsAction";
-import { DetailsSection } from "../exports";
+import  DetailsSection  from "../components/main_components/DetailsSection";
 import { converDate, returnHeight } from "../exports";
 import {
   AreaChart,

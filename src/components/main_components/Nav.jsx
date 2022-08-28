@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../../images/logo.png";
 import homeIcon from "../../images/home.svg";
 import chartIcon from "../../images/chart.svg";
-import exchangeIcon from "../../images/ex.svg";
 import newsIcon from "../../images/news.svg";
 import menu from "../../images/menu.png";
 

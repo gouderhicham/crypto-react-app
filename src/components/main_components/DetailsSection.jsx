@@ -1,5 +1,10 @@
 import React from "react";
-import { price, ex, high, markets, rank, thunder } from "../../exports";
+import price from "../../images/price.png"
+import ex from "../../images/ex.png"
+import high from "../../images/high.png"
+import markets from "../../images/markets.png"
+import rank from "../../images/rank.png"
+import thunder from "../../images/thunder.png"
 import { formateNumber } from "../../exports";
 function DetailsSection({ coin }) {
   return (

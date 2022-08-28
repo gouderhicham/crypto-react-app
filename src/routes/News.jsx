@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { NewsCardIcon, NewsDetails } from "../exports";
+import NewsDetails from "../components/NewsDetails";
+import NewsCardIcon from "../components/NewsCardIcon"
 import { useLocation } from "react-router-dom";
 import { AnimatePresence, AnimateSharedLayout } from "framer-motion";
 function News() {

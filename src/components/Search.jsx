@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { getSearchText } from "../actions/getSearchText";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
