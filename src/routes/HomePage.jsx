@@ -9,7 +9,7 @@ function Homepage() {
   }, []);
   return (
     <div className="home-page-content">
-      <h1 className="title">Global Ah Crypto Stats</h1>
+      <h1 className="title"> Global Crypto Stats </h1>
       <section className="stats">
         <div className="left">
           <div className="small-title">

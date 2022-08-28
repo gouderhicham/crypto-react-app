@@ -85,6 +85,7 @@
     position: relative;
   }
   .nav-link-res {
+    z-index : 2 ; 
     transform: translateX(-120%);
     transition: 0.3s ease all;
     height: 100vh;

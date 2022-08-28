@@ -59,4 +59,18 @@ export const converDate = (time, option) => {
     }
   }
 };
+export function returnHeight(width) {
+  if (width < 840 && width > 500) {
+    return 350
+  }   
+  else if (width < 500 && width > 380){
+    return 300
+  }
+  else if (width < 380){
+    return 270
+  }
+  else{
+    return 450
+  }
+}
 // check how many time actions is dispatched and how many times a component render ((page details one))

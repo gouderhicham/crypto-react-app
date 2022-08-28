@@ -12,7 +12,7 @@ function Footer() {
 
         <address>
           5534 Somewhere In. The World 22193-10212
-          <a className="footer__btn" href="mailto:example@gmail.com">
+          <a className="footer__btn" href="mailto:gouderpay@gmail.com">
             Email Us
           </a>
         </address>

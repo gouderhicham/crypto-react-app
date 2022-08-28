@@ -15,6 +15,8 @@
     font-size: 2.6rem;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
   }
   h3 {
     padding: 1rem 0 1.5rem 0;
@@ -109,10 +111,11 @@
   align-items: center;
   justify-content: center;
   flex-direction: row;
+  flex-wrap: wrap;
   padding-bottom: 1.5rem;
   p {
     padding: 0.3rem 1rem;
-    margin: 0 0.5rem;
+    margin: 0.5rem 0.5rem;
     background: rgb(163, 163, 163);
     border-radius: 30px;
     font-size: 0.8rem;
@@ -124,6 +127,48 @@
 .selected {
   background: rgb(99, 98, 98) !important;
 }
-.recharts-cartesian-axis-tick:first-child{
+.recharts-cartesian-axis-tick:first-child {
   display: none;
+}
+.recharts-wrapper {
+  margin-right: 50px;
+  z-index: 1;
+}
+@media screen and (max-width: 1000px) {
+  .chart-label {
+    .label-right {
+      p {
+        padding: 0 0.3rem;
+      }
+    }
+  }
+  .details-container {
+    padding: 0 0.8rem;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .chart-label .label-right {
+    p {
+      padding: 0 0.3rem;
+    }
+  }
+  .details-container {
+    padding: 0 0.4rem;
+  }
+  .chart-label .label-right {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0rem;
+    p {
+      white-space: nowrap;
+      margin: 0.5rem 0rem;
+      padding: 0 0.3rem;
+    }
+  }
+}
+@media screen and (max-width: 700px) {
+  .recharts-wrapper {
+    margin-right: 26px;
+  }
 }

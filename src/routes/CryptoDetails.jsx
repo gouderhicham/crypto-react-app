@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/main_components/Loader";
 import { cryptDetailsAction } from "../actions/cryptoDetailsAction";
 import { DetailsSection } from "../exports";
-import { converDate } from "../exports";
+import { converDate, returnHeight } from "../exports";
 import {
   AreaChart,
   Area,
@@ -25,7 +25,7 @@ function CryptoDetails() {
         single_history_data.cryptoDetails.priceDetails.change
     )
   );
- 
+
   // select dates p
   const ps = document.querySelectorAll(".dates p");
   useEffect(() => {
@@ -37,7 +37,6 @@ function CryptoDetails() {
       }
     });
   }, [date_state]);
-
   // select coin price history from redux store
   const historData = useSelector(
     (single_history_data) =>
@@ -49,6 +48,14 @@ function CryptoDetails() {
     time: converDate(Number(ele.timestamp), date_state),
     fulltime: converDate(Number(ele.timestamp), date_state),
   }));
+  const filterdArr = newArr?.filter((ele) => {
+    if (ele.price > 0)
+      return {
+        price: ele.price,
+        time: ele.time,
+        fulltime: ele.fulltime,
+      };
+  });
   // select the clicked crypto coin
   const coin = useSelector((a_data) => a_data.cryptoDetails.cryptDetails);
   // the fucntion that's  gonna render different tooltip on chart hover
@@ -70,6 +77,19 @@ function CryptoDetails() {
       );
     }
   };
+  function useWindowSize() {
+    const [size, setSize] = useState([0, 0]);
+    useLayoutEffect(() => {
+      function updateSize() {
+        setSize([window.innerWidth]);
+      }
+      window.addEventListener('resize', updateSize);
+      updateSize();
+      return () => window.removeEventListener('resize', updateSize);
+    }, []);
+    return size;
+  }
+  const [width] = useWindowSize();
   useEffect(() => {
     dispatch(cryptDetailsAction(params.coinId));
   }, []);
@@ -88,7 +108,7 @@ function CryptoDetails() {
         <h3>{`${coin.name} live price in US Dollar (USD). View value statistics, market cap and supply.`}</h3>
       </div>
       <div className="chart-label">
-        <h1>{`${coin.name} Price Chart :`}</h1>
+        <h1>{`${coin.name} Price Chart:`}</h1>
         <div className="label-right">
           <p>
             Change:
@@ -129,12 +149,8 @@ function CryptoDetails() {
         <p>3y</p>
         <p>5y</p>
       </div>
-      <ResponsiveContainer
-        className="chart-container"
-        width="100%"
-        height={400}
-      >
-        <AreaChart className="chart" data={newArr}>
+      <ResponsiveContainer className="chart-container" height={returnHeight(width)}>
+        <AreaChart className="chart" data={filterdArr}>
           <CartesianGrid strokeDasharray="3 2 4" />
           <XAxis
             interval={newArr.length / 3}
