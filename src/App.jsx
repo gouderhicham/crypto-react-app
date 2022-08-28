@@ -3,7 +3,6 @@ import {
   HomePage,
   Nav,
   News,
-  Exchange,
   Cryptos,
   Footer,
   CryptoDetails,
@@ -36,7 +35,6 @@ function App() {
           <Route path="/news" element={<News />}>
             <Route path=":id" element={<NewsDetails />} />
           </Route>
-          <Route path="/exchange" element={<Exchange />} />
           <Route path="/cryptos" element={<Cryptos />} />
           <Route path="/cryptos/:coinId" element={<CryptoDetails />} />
         </Routes>

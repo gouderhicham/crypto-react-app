@@ -172,3 +172,12 @@
     margin-right: 26px;
   }
 }
+@media screen and (max-width: 550px) {
+  .home-page-content .title  , .c-title{
+    left: 50%;
+    width: fit-content;
+    position: relative;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+}

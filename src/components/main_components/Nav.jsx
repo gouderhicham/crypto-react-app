@@ -53,16 +53,7 @@ function Nav() {
           <img width={25} src={chartIcon} alt="home-icon" />
           <p>Crypto Currencies</p>
         </Link>
-        <Link
-          onClick={() => {
-            setActive(false);
-          }}
-          className="nav-links"
-          to={"/exchange"}
-        >
-          <img width={25} src={exchangeIcon} alt="home-icon" />
-          <p>Exchange</p>
-        </Link>
+       
         <Link
           onClick={() => {
             setActive(false);

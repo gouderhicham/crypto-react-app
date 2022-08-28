@@ -83,14 +83,15 @@ function CryptoDetails() {
       function updateSize() {
         setSize([window.innerWidth]);
       }
-      window.addEventListener('resize', updateSize);
+      window.addEventListener("resize", updateSize);
       updateSize();
-      return () => window.removeEventListener('resize', updateSize);
+      return () => window.removeEventListener("resize", updateSize);
     }, []);
     return size;
   }
   const [width] = useWindowSize();
   useEffect(() => {
+    window.scrollTo({ top: 0, left: 0});
     dispatch(cryptDetailsAction(params.coinId));
   }, []);
   if (loadingStatus) {
@@ -149,7 +150,10 @@ function CryptoDetails() {
         <p>3y</p>
         <p>5y</p>
       </div>
-      <ResponsiveContainer className="chart-container" height={returnHeight(width)}>
+      <ResponsiveContainer
+        className="chart-container"
+        height={returnHeight(width)}
+      >
         <AreaChart className="chart" data={filterdArr}>
           <CartesianGrid strokeDasharray="3 2 4" />
           <XAxis
