@@ -25,8 +25,8 @@ function App() {
   }
   return (
     <>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loader />}>
+        <Suspense fallback={<Loader />}>
           <Nav />
         </Suspense>
         <div className="app">
@@ -34,7 +34,7 @@ function App() {
             <Route
               path="/"
               element={
-                <Suspense fallback={<div>Loading...</div>}>
+                <Suspense fallback={<Loader />}>
                   <HomePage />
                 </Suspense>
               }
@@ -43,7 +43,7 @@ function App() {
             <Route
               path="/news"
               element={
-                <Suspense fallback={<div>Loading...</div>}>
+                <Suspense fallback={<Loader />}>
                   <News />
                 </Suspense>
               }
@@ -51,7 +51,7 @@ function App() {
               <Route
                 path=":id"
                 element={
-                  <Suspense fallback={<div>Loading...</div>}>
+                  <Suspense fallback={<Loader />}>
                     <NewsDetails />
                   </Suspense>
                 }
@@ -60,7 +60,7 @@ function App() {
             <Route
               path="/cryptos"
               element={
-                <Suspense fallback={<div>Loading...</div>}>
+                <Suspense fallback={<Loader />}>
                   <Cryptos />
                 </Suspense>
               }
@@ -69,8 +69,8 @@ function App() {
             <Route
               path="/cryptos/:coinId"
               element={
-                <Suspense fallback={<div>Loading...</div>}>
-                  <CryptoDetails />{" "}
+                <Suspense fallback={<Loader />}>
+                  <CryptoDetails />
                 </Suspense>
               }
             />
