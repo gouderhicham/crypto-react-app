@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import NewsDetails from "../components/NewsDetails";
-import NewsCardIcon from "../components/NewsCardIcon"
+import NewsCardIcon from "../components/NewsCardIcon";
 import { useLocation } from "react-router-dom";
 import { AnimatePresence, AnimateSharedLayout } from "framer-motion";
 function News() {
@@ -9,17 +9,17 @@ function News() {
     title: "",
     desc: "",
     date: "",
-    image: "",
+
     url: "",
   });
   const news = useSelector((data) => data.news.news);
+  console.log(news);
   const pathName = useLocation().pathname.substring(6);
   return (
     <>
       {pathName !== "" && data.title !== "" && (
         <AnimatePresence>
           <NewsDetails
-            image={data.image}
             desc={data.desc}
             title={data.title}
             date={data.date}
@@ -35,11 +35,10 @@ function News() {
               url={n.url}
               data={data}
               setData={setData}
-              image={n.image}
               date={n.date}
               key={n.title}
               title={n.title}
-              desc={n.desc}
+              desc={n.description}
             />
           ))}
         </section>

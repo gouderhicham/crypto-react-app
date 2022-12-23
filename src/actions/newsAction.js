@@ -4,7 +4,7 @@ export const newsAction = () => {
     method: "GET",
     headers: {
       "X-RapidAPI-Key": coins_api_key,
-      "X-RapidAPI-Host": "crypto-news14.p.rapidapi.com",
+      "X-RapidAPI-Host": "crypto-news16.p.rapidapi.com",
     },
   };
   return async (dispatch) => {
@@ -13,7 +13,7 @@ export const newsAction = () => {
     dispatch({
       type: "get-news",
       payload: {
-        news: data,
+        news: data ,
       },
     });
   };

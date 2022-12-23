@@ -8,7 +8,7 @@ function NewsDetails({ title, image, desc, url, date }) {
       <div
         onClick={(e) => {
           if (e.target.classList[0] === "align-center") {
-            navigate(-1);
+            navigate("/news");
           }
         }}
         className="align-center"
@@ -19,7 +19,7 @@ function NewsDetails({ title, image, desc, url, date }) {
           exit={{ transition: { duration: 0.2 } }}
           className="news-card-zoom"
         >
-          <img src={image} alt="bit" />
+          
           <h2 className="details-title">{title}</h2>
           <p className="desc">{desc}</p>
           <div className="details-news-buttons-box">

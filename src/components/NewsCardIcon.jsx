@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-function NewsCardIcon({ title, id, image, url, data, setData, desc, date }) {
+function NewsCardIcon({ title, id, url, data, setData, desc, date }) {
   return (
     <Link
       className="hyper-text"
@@ -11,7 +11,7 @@ function NewsCardIcon({ title, id, image, url, data, setData, desc, date }) {
           title: title,
           desc: desc,
           date: date,
-          image: image,
+
           url: url,
         });
       }}
@@ -23,7 +23,6 @@ function NewsCardIcon({ title, id, image, url, data, setData, desc, date }) {
         className="news-card"
         layoutId={`container ${id}`}
       >
-        <img src={image} alt="bit" />
         <h2 className="title">{title}</h2>
         <div className="news-buttons-box">
           <h3>Updated: {(date || "").substring(0, 17)} </h3>
